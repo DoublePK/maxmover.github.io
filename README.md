@@ -1,2 +1,1 @@
-# maxmover.github.io
-Tutorial
+https://doublepk.github.io/solo.github.io/
