@@ -41,45 +41,58 @@ function navShadow(){
 }
 
 //TEAM MEMBER PHOTOS
-const team = document.querySelector('.team-member-contents')
 const teamMember = document.querySelectorAll('.team-member-content')
 const teamLeft = document.getElementById('team-left')
 const teamRight = document.getElementById('team-right')
 
 let teamIdx = 0
+let teamInterval = setInterval(runTeam, 3000)
 
-teamRight.addEventListener('click', () => {
+function resetTeamInterval(){
+  clearInterval(teamInterval)
+  teamInterval = setInterval(runTeam, 3000)
+}
+
+function runTeam(){
   teamIdx++;
   if(teamIdx > teamMember.length - 1){
     teamIdx = 0
   }
-  console.log(teamIdx)
-  updateTeamMember();
+  updateTeamMember()
+}
+
+teamRight.addEventListener('click', () => {
+  resetTeamInterval()
+  runTeam()
+  
 })
 
 teamLeft.addEventListener('click', () => {
+  resetTeamInterval()
   teamIdx--;
   if(teamIdx < 0){
     teamIdx = teamMember.length-1
   }
-  console.log(teamIdx)
-  right = setTimeout
+  updateTeamMember();
 })
-console.log(teamMember[0].clientWidth)
+// console.log(teamMember[0].clientWidth)
 
 function updateTeamMember(){
-  teamMember[teamIdx -1].classList.add('remove')  
-  teamMember[teamIdx].classList.add('translate')
-  teamMember[teamIdx + 1].classList.add('active')
-  rightmove = setTimeout(teamMember[teamIdx -1].classList.remove('remove'), 500)
-  teamMember[teamIdx-1].classList.remove('translate')
-  teamMember[teamIdx].classList.remove('active')  
-  
-  clearTimeout(rightmove)
-  
-  // teamMember[teamIdx -1].classList.remove('active')
-  
-  
+  teamMember.forEach(member => {
+    member.classList.remove('left')
+    member.classList.remove('right')
+  })
+  if(teamIdx === teamMember.length -1){
+    // teamMember[teamIdx-1].classList.remove('left')
+    // teamMember[teamMember.length -1].classList.remove('right')
+    teamMember[teamMember.length -1].classList.add('left')
+    teamMember[0].classList.add('right')
+  }else{
+    // teamMember[teamIdx-1].classList.remove('left')
+    // teamMember[teamIdx].classList.remove('right')
+    teamMember[teamIdx].classList.add('left')
+    teamMember[teamIdx+1].classList.add('right')
+  }
 }
 
 // team.style.transform = `translateX(${-teamIdx * (teamMember[0].clientWidth + 10)}px)`
