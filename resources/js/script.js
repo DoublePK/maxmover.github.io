@@ -4,7 +4,6 @@ const headerLogo = document.getElementById('header-logo');
 const hamburger = document.querySelector('.hamburger')
 const hamburgerClose = document.querySelector('.nav-close')
 const mobileNav = document.querySelector('.header-mobile')
-
 const home = document.querySelector('.home')
 
 window.addEventListener('scroll', fixNav);
@@ -40,3 +39,47 @@ function navShadow(){
     header.style.boxShadow = 'none';
   }
 }
+
+//TEAM MEMBER PHOTOS
+const team = document.querySelector('.team-member-contents')
+const teamMember = document.querySelectorAll('.team-member-content')
+const teamLeft = document.getElementById('team-left')
+const teamRight = document.getElementById('team-right')
+
+let teamIdx = 0
+
+teamRight.addEventListener('click', () => {
+  teamIdx++;
+  if(teamIdx > teamMember.length - 1){
+    teamIdx = 0
+  }
+  console.log(teamIdx)
+  updateTeamMember();
+})
+
+teamLeft.addEventListener('click', () => {
+  teamIdx--;
+  if(teamIdx < 0){
+    teamIdx = teamMember.length-1
+  }
+  console.log(teamIdx)
+  right = setTimeout
+})
+console.log(teamMember[0].clientWidth)
+
+function updateTeamMember(){
+  teamMember[teamIdx -1].classList.add('remove')  
+  teamMember[teamIdx].classList.add('translate')
+  teamMember[teamIdx + 1].classList.add('active')
+  rightmove = setTimeout(teamMember[teamIdx -1].classList.remove('remove'), 500)
+  teamMember[teamIdx-1].classList.remove('translate')
+  teamMember[teamIdx].classList.remove('active')  
+  
+  clearTimeout(rightmove)
+  
+  // teamMember[teamIdx -1].classList.remove('active')
+  
+  
+}
+
+// team.style.transform = `translateX(${-teamIdx * (teamMember[0].clientWidth + 10)}px)`
